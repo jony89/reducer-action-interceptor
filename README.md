@@ -51,7 +51,7 @@ Obviously, we need to take care of the reducers as well :
 ```js
 import { combineReducers } from 'redux';
 import { reducerInterceptor } from 'reducer-action-interceptor';
-import genericMyContainerReducer from './algorithmDirectory.reducer';
+import genericMyContainerReducer from './genericReducer.reducer';
 
 export default combineReducers({
   firstContainerReducer: reducerInterceptor(genericMyContainerReducer, 'FIRST_CONTAINER_TYPE'),
