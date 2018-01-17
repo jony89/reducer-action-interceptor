@@ -1,0 +1,51 @@
+{
+  "name": "reducer-action-interceptor",
+  "version": "0.1.0",
+  "description": "reducer-action-interceptor allows you on one hand to intercept action creators in order to patch the action before bubblig up to the reducers, and on the other hand to intercept the reducers in order to take advantage of that interception",
+  "main": "index.js",
+  "jsnext:main": "es/index.js",
+  "homepage": "https://github.com/jony89/reducer-action-interceptor",
+  "scripts": {
+    "prepublish": "npm run build",
+    "build:es": "./node_modules/.bin/cpx ./src/**/*.js ./es",
+    "build:lib": "./node_modules/.bin/babel src -d lib",
+    "clean": "./node_modules/.bin/rimraf lib es",
+    "build": "npm run clean && npm run build:es && npm run build:lib",
+    "prebuild": "npm run test",
+    "test": "./node_modules/.bin/jest --config .jest.config.json --setupTestFrameworkScriptFile=./setupTests.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.36",
+    "@babel/core": "^7.0.0-beta.36",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.36",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.36",
+    "@babel/plugin-transform-flow-strip-types": "^7.0.0-beta.37",
+    "@babel/plugin-transform-modules-commonjs": "^7.0.0-beta.36",
+    "@babel/polyfill": "^7.0.0-beta.36",
+    "@babel/preset-env": "^7.0.0-beta.36",
+    "@babel/preset-flow": "^7.0.0-beta.36",
+    "babel-core": "^7.0.0-0",
+    "babel-eslint": "^8.2.1",
+    "babel-jest": "^22.0.4",
+    "cpx": "^1.5.0",
+    "eslint": "^4.7.2",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jest": "^21.2.0",
+    "http-proxy-middleware": "0.17.4",
+    "jest": "^22.0.4",
+    "redux": "^3.7.2",
+    "redux-actions": "2.2.1",
+    "redux-mock-store": "^1.4.0",
+    "redux-thunk": "^2.2.0",
+    "rimraf": "^2.6.2"
+  },
+  "files": [
+    "es",
+    "lib",
+    "index.js"
+  ],
+  "author": "",
+  "license": "MIT"
+}
