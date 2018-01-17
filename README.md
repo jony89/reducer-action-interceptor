@@ -2,7 +2,7 @@
 
 These plugin allows you on one hand to intercept action creators in order to patch the action before bubbling up to the reducers, and on the other hand to intercept the reducers in order to take advantage of that interception.
 
-For example, one can use this to create multiple instances of the same container within the same page, without one affects the other.
+For example, one can use this to create multiple instances of the same container within the same page, without one affecting the other.
 
 - Works well with [redux-thunk](https://github.com/gaearon/redux-thunk)
 
@@ -10,10 +10,10 @@ For example, one can use this to create multiple instances of the same container
 
 ## Example
 
-Let's say we have one `MyContainer` that we want to different instances of him.
+Let's say we want two instances of `MyContainer`.
 
 `MyContainer` should export it's `actionCreators` object. 
-Usually passed to the `connect` function where the `mapDispatchToProps` attribute should come).
+Usually this object passed to the `connect` function where the `mapDispatchToProps` attribute comes in.
 These are the actions that we will intercept.
 
 Now we can create two instances :
