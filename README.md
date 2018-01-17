@@ -29,7 +29,7 @@ import MyContainer, { actionCreators } from '../MyContainer';
 const mapStateToPropsFirstComp = state => ({ ...state.firstContainerReducer });
 // actionMetaInterceptor(FIRST_CONTAINER_TYPE) is optional, we can intercept however we like
 export const MyFirstContainerConnected = connect(
-    mapStateToPropsFirstComp,
+  mapStateToPropsFirstComp,
   actionCreatorsInterceptor(actionCreators, actionMetaInterceptor('FIRST_CONTAINER_TYPE')),
 )(MyContainer);
 
