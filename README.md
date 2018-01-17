@@ -28,7 +28,7 @@ import MyContainer, { actionCreators } from '../MyContainer';
 **/
 const mapStateToPropsFirstComp = state => ({ ...state.firstContainerReducer });
 // actionMetaInterceptor(FIRST_CONTAINER_TYPE) is optional, we can intercept however we like
-const MyFirstContainerConnected = connect(
+export const MyFirstContainerConnected = connect(
     mapStateToPropsFirstComp,
   actionCreatorsInterceptor(actionCreators, actionMetaInterceptor('FIRST_CONTAINER_TYPE')),
 )(MyContainer);
@@ -37,19 +37,10 @@ const MyFirstContainerConnected = connect(
  * Second Container 
 **/
 const mapStateToPropsSecondComp = state => ({ ...state.secondContainerReducer });
-const MySecondContainerConnected = connect(
+export const MySecondContainerConnected = connect(
   mapStateToPropsSecondComp,
   actionCreatorsInterceptor(actionCreators, actionMetaInterceptor('SECOND_CONTAINER_TYPE')),
 )(MyContainer);
-
-// optional - pass along the value which makes the container different
-MyFirstContainerConnected.defaultProps = {
-  ...MyFirstContainerConnected.defaultProps,
-  type: FIRST_CONTAINER_TYPE,
-};
-
-export default MySecondContainerConnected;
-export default MyFirstContainerConnected;
 ```
 
 Obviously, we need to take care of the reducers as well :
