@@ -6,7 +6,7 @@
   "scripts": {
     "prepublish": "npm run build",
     "build:es": "./node_modules/.bin/cpx 'src/**/*.js' './es'",
-    "build:lib": "./node_modules/@babel/cli/bin/babel.js es -d lib",
+    "build:lib": "./node_modules/@babel/cli/bin/babel.js src -d lib",
     "clean": "./node_modules/.bin/rimraf lib es",
     "build": "npm run clean && npm run build:es && npm run build:lib",
     "prebuild": "npm run test",
