@@ -57,11 +57,11 @@ Obviously, we need to take care of the reducers as well :
 ```js
 import { combineReducers } from 'redux';
 import { reducerInterceptor } from 'reducer-action-interceptor';
-import genericMyContainerReducer from './genericReducer.reducer';
+import someGenericReducer from './someGenericReducer.reducer';
 
 export default combineReducers({
-  firstContainerReducer: reducerInterceptor(genericMyContainerReducer, 'FIRST_CONTAINER_TYPE'),
-  secondContainerReducer: reducerInterceptor(genericMyContainerReducer, 'SECOND_CONTAINER_TYPE'),
+  firstContainerReducer: reducerInterceptor(someGenericReducer, 'FIRST_CONTAINER_TYPE'),
+  secondContainerReducer: reducerInterceptor(someGenericReducer, 'SECOND_CONTAINER_TYPE'),
 });
 ```
 
