@@ -23,6 +23,9 @@ import { connect } from 'react-redux';
 import { actionCreatorsInterceptor, actionMetaInterceptor } from 'reducer-action-interceptor';
 import MyContainer, { actionCreators } from '../MyContainer';
 
+/**
+ * First Container 
+**/
 const mapStateToPropsFirstComp = state => ({ ...state.firstContainerReducer });
 // actionMetaInterceptor(FIRST_CONTAINER_TYPE) is optional, we can intercept however we like
 const MyFirstContainerConnected = connect(
@@ -30,6 +33,9 @@ const MyFirstContainerConnected = connect(
   actionCreatorsInterceptor(actionCreators, actionMetaInterceptor('FIRST_CONTAINER_TYPE')),
 )(MyContainer);
 
+/**
+ * Second Container 
+**/
 const mapStateToPropsSecondComp = state => ({ ...state.secondContainerReducer });
 const MySecondContainerConnected = connect(
   mapStateToPropsSecondComp,
