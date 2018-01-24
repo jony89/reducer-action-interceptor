@@ -8,7 +8,7 @@ For example, one can use this to create multiple instances of the same container
 
 - Follows [FSA](https://github.com/acdlite/flux-standard-action)
 
-## Example
+## React example
 
 Let's say we want two instances of `MyContainer`.
 
