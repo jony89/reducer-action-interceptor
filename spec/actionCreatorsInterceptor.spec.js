@@ -1,6 +1,5 @@
 import { createAction } from 'redux-actions';
 import actionCreatorsInterceptor from '../src/actionCreatorsInterceptor';
-import actionMetaInterceptor from '../src/actionMetaInterceptor';
 
 const MY_COOL_ACTION_1 = 'MY_COOL_ACTION_1';
 const MY_COOL_ACTION_2 = 'MY_COOL_ACTION_2';
@@ -17,7 +16,7 @@ describe('actionCreatorsInterceptor', () => {
   it('should create new reference for intercepted actions', () => {
     const interceptedActionCreators = actionCreatorsInterceptor(
       actionCreators,
-      actionMetaInterceptor(MY_UNIQUE_VALUE)
+      MY_UNIQUE_VALUE
     );
     expect(interceptedActionCreators).not.toBe(actionCreators);
   });
@@ -25,7 +24,7 @@ describe('actionCreatorsInterceptor', () => {
   it('should contain the same exact action keys', () => {
     const interceptedActionCreators = actionCreatorsInterceptor(
       actionCreators,
-      actionMetaInterceptor(MY_UNIQUE_VALUE)
+      MY_UNIQUE_VALUE
     );
     expect(interceptedActionCreators.myFirstCoolActionCreator).toBeDefined();  
     expect(interceptedActionCreators.mySecondCoolActionCreator).toBeDefined();  
@@ -35,7 +34,7 @@ describe('actionCreatorsInterceptor', () => {
   it('should intercept action post dispatch', async () => {
     const interceptedActionCreators = actionCreatorsInterceptor(
       actionCreators,
-      actionMetaInterceptor(MY_UNIQUE_VALUE)
+      MY_UNIQUE_VALUE
     );
     const interceptedAction = interceptedActionCreators.myFirstCoolActionCreator;
     const store = global.mock.createEmptyStore();

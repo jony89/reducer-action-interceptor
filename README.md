@@ -20,17 +20,16 @@ Now we can create two instances :
 
 ```js
 import { connect } from 'react-redux';
-import { actionCreatorsInterceptor, actionMetaInterceptor } from 'reducer-action-interceptor';
+import { actionCreatorsInterceptor } from 'reducer-action-interceptor';
 import MyContainer, { actionCreators } from '../MyContainer';
 
 /**
  * First Container 
 **/
 const mapStateToPropsFirstComp = state => ({ ...state.firstContainerReducer });
-// actionMetaInterceptor(FIRST_CONTAINER_TYPE) is optional, we can intercept however we like
 export const MyFirstContainerConnected = connect(
   mapStateToPropsFirstComp,
-  actionCreatorsInterceptor(actionCreators, actionMetaInterceptor('FIRST_CONTAINER_TYPE')),
+  actionCreatorsInterceptor(actionCreators, 'INSTANCE1'),
 )(MyContainer);
 
 /**
@@ -39,11 +38,11 @@ export const MyFirstContainerConnected = connect(
 const mapStateToPropsSecondComp = state => ({ ...state.secondContainerReducer });
 export const MySecondContainerConnected = connect(
   mapStateToPropsSecondComp,
-  actionCreatorsInterceptor(actionCreators, actionMetaInterceptor('SECOND_CONTAINER_TYPE')),
+  actionCreatorsInterceptor(actionCreators, 'INSTANCE2'),
 )(MyContainer);
 ```
 
-Obviously, we need to take care of the reducers as well :
+Obviously, we need to take care of the reducers as well. using the HOR - `reducerInterceptor` :
 
 ```js
 import { combineReducers } from 'redux';
@@ -51,8 +50,8 @@ import { reducerInterceptor } from 'reducer-action-interceptor';
 import someGenericReducer from './someGenericReducer.reducer';
 
 export default combineReducers({
-  firstContainerReducer: reducerInterceptor(someGenericReducer, 'FIRST_CONTAINER_TYPE'),
-  secondContainerReducer: reducerInterceptor(someGenericReducer, 'SECOND_CONTAINER_TYPE'),
+  firstContainerReducer: reducerInterceptor(someGenericReducer, 'INSTANCE1'),
+  secondContainerReducer: reducerInterceptor(someGenericReducer, 'INSTANCE2'),
 });
 ```
 

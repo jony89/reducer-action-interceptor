@@ -1,6 +1,6 @@
 {
   "name": "reducer-action-interceptor",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "reducer-action-interceptor allows you on one hand to intercept action creators in order to patch the action before bubblig up to the reducers, and on the other hand to intercept the reducers in order to take advantage of that interception",
   "main": "index.js",
   "jsnext:main": "es/index.js",

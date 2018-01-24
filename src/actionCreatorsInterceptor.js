@@ -1,5 +1,9 @@
-export default (actions: mixed[], interceptor: () => mixed) => {
+import actionMetaInterceptor from './actionMetaInterceptor';
+
+export default (actions: {}, instanceName: string) => {
   if (!actions) return actions;
+
+  const actionInterceptor = actionMetaInterceptor(instanceName)
 
   Object.keys(actions).forEach(key => {
     const actionCreator = actions[key];
@@ -9,7 +13,7 @@ export default (actions: mixed[], interceptor: () => mixed) => {
         if (typeof action === 'function') {
           return action(dispatchInterceptor, getState);
         }
-        return dispatch(interceptor(action));
+        return dispatch(actionInterceptor(action));
       };
 
       const action = actionCreator(...args);
