@@ -26,18 +26,16 @@ import MyContainer, { actionCreators } from '../MyContainer';
 /**
  * First Container 
 **/
-const mapStateToPropsFirstComp = state => ({ ...state.firstContainerReducer });
 export const MyFirstContainerConnected = connect(
-  mapStateToPropsFirstComp,
+  state => ({ ...state.firstContainerReducer }),
   actionCreatorsInterceptor(actionCreators, 'INSTANCE1'),
 )(MyContainer);
 
 /**
  * Second Container 
 **/
-const mapStateToPropsSecondComp = state => ({ ...state.secondContainerReducer });
 export const MySecondContainerConnected = connect(
-  mapStateToPropsSecondComp,
+  state => ({ ...state.secondContainerReducer }),
   actionCreatorsInterceptor(actionCreators, 'INSTANCE2'),
 )(MyContainer);
 ```
@@ -57,6 +55,6 @@ export default combineReducers({
 
 And we are done, each action for each action is solely for that container.
 
-The values `FIRST_CONTAINER_TYPE`, `SECOND_CONTAINER_TYPE`, can be anything you like, even a random number!
+The values `INSTANCE1`, `INSTANCE2`, can be anything you like, even a random number!
 
 More over, the intercepted reducers can still accept non-intercepted actions, so no worries, you are still able to listen to other actions raised from all over the app.
