@@ -1,26 +1,32 @@
 import actionMetaInterceptor from './actionMetaInterceptor';
 
-export default (actions: {}, instanceName: string) => {
-  if (!actions) return actions;
+export default (actionOrActions: {} | () => mixed, instanceName: string) => {
+  if (!actionOrActions) return actionOrActions;
 
-  const actionInterceptor = actionMetaInterceptor(instanceName)
+  const actionInterceptor = actionMetaInterceptor(instanceName);
+  if (typeof actionOrActions === 'function') {
+    return interceptAction(actionInterceptor, actionOrActions);
+  }
 
-  Object.keys(actions).forEach(key => {
-    const actionCreator = actions[key];
+  return Object.keys(actionOrActions).reduce((result, key) => {
+    const actionCreator = actionOrActions[key];
 
-    actions[key] = (...args) => async (dispatch: Dispatch<*>, getState: mixed) => {
-      const dispatchInterceptor = async action => {
-        if (typeof action === 'function') {
-          return action(dispatchInterceptor, getState);
-        }
-        return dispatch(actionInterceptor(action));
-      };
+    result[key] = interceptAction(actionInterceptor, actionCreator);
 
-      const action = actionCreator(...args);
-      return dispatchInterceptor(action);
-    };
-  });
-
-  return { ...(actions) };
+    return result;
+  }, {});
 };
 
+function interceptAction(actionInterceptor, actionCreator) {
+  return (...args) => async (dispatch: Dispatch<*>, getState: mixed) => {
+    const dispatchInterceptor = async action => {
+      if (typeof action === 'function') {
+        return action(dispatchInterceptor, getState);
+      }
+      return dispatch(actionInterceptor(action));
+    };
+
+    const action = actionCreator(...args);
+    return dispatchInterceptor(action);
+  };
+}
