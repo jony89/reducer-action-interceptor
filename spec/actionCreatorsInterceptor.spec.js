@@ -43,5 +43,20 @@ describe('actionCreatorsInterceptor', () => {
     const actions = store.getActions();
     expect(actions[0].type).toBe(MY_COOL_ACTION_1);
     expect(actions[0].meta.uniqueValue).toBe(MY_UNIQUE_VALUE);
-  })
+  });
+
+  it('should support single action interception', async () => {
+
+    const interceptedAction = actionCreatorsInterceptor(
+      myFirstCoolActionCreator,
+      MY_UNIQUE_VALUE
+    );
+
+    const store = global.mock.createEmptyStore();
+    await store.dispatch(interceptedAction());
+
+    const actions = store.getActions();
+    expect(actions[0].type).toBe(MY_COOL_ACTION_1);
+    expect(actions[0].meta.uniqueValue).toBe(MY_UNIQUE_VALUE);
+  });
 });
