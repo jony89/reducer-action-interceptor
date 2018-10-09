@@ -2,5 +2,6 @@
   "transform": {
     "^.+\\.js$": "babel-jest"
   },
-  "collectCoverageFrom": ["src/**/*.{js}"]
+  "collectCoverageFrom": ["src/**/*.{js}"],
+  "testURL": "http://localhost/"
 }
