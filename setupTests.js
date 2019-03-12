@@ -1,4 +1,5 @@
 /* eslint-disable */
+require('regenerator-runtime/runtime');
 import configureStore from 'redux-mock-store'
 import thunk from 'redux-thunk';
 /* eslint-enable */
